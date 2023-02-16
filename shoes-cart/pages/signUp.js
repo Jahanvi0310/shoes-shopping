@@ -1,9 +1,10 @@
 import React from 'react'
 import 'tw-elements'
+import Link from 'next/link'
 const SignUp = () => {
   return (
     <div>
-     <section className="flex min-h-full items-center justify-center  px-4 sm:px-6 lg:px-8 mt-28 py-12 bg-cyan-600">
+     <section className="flex min-h-full items-center justify-center  px-4 sm:px-6 lg:px-8 mt-28 py-12 bg-white">
      
      <div className="px-6 h-full text-gray-800 ">
        <div
@@ -67,7 +68,15 @@ const SignUp = () => {
                >
                Sign Up
                </button>
-               
+               <p className="text-sm font-semibold mt-2 pt-1 mb-0">
+                 Already have an account?
+                 <Link href={'/login'} legacyBehavior>
+                 <a
+                   href="#!"
+                   className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
+                   >LogIn</a
+                 ></Link>
+               </p>
              </div>
            </form>
          </div>

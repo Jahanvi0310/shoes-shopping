@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from 'next/Link'
+
 import 'tw-elements'
 const Login=()=>{
+  
   return (
     <div>
-   <section className="flex min-h-full items-center justify-center  px-4 sm:px-6 lg:px-8 mt-28 py-12 bg-cyan-600">
+   <section className="flex min-h-full items-center justify-center  px-4 sm:px-6 lg:px-8 mt-28 py-12 bg-white mb-10">
      
      <div className="px-6 h-full text-gray-800 ">
        <div
@@ -20,7 +22,7 @@ const Login=()=>{
            />
          </div>
          <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-           <form>
+           <form >
              <div className="flex flex-row items-center justify-center lg:justify-start">
              <h2 className="mb-16 text-center text-3xl font-bold t text-black items-center justify-center">Sign in to your account</h2>
                
