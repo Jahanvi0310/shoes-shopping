@@ -13,15 +13,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <div
-  id="carouselExampleCrossfade"
-  className="carousel slide carousel-fade relative"
-  data-bs-ride="carousel"
->
+      <div id="carouselExampleCaptions" className="carousel slide relative" data-bs-ride="carousel">
   <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
     <button
       type="button"
-      data-bs-target="#carouselExampleCrossfade"
+      data-bs-target="#carouselExampleCaptions"
       data-bs-slide-to="0"
       className="active"
       aria-current="true"
@@ -29,44 +25,70 @@ export default function Home() {
     ></button>
     <button
       type="button"
-      data-bs-target="#carouselExampleCrossfade"
+      data-bs-target="#carouselExampleCaptions"
       data-bs-slide-to="1"
       aria-label="Slide 2"
     ></button>
     <button
       type="button"
-      data-bs-target="#carouselExampleCrossfade"
+      data-bs-target="#carouselExampleCaptions"
       data-bs-slide-to="2"
       aria-label="Slide 3"
     ></button>
   </div>
   <div className="carousel-inner relative w-full overflow-hidden">
-    <div className="carousel-item active float-left w-full">
+    <div className="carousel-item active relative float-left w-full">
       <img
-        src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
-        className="block w-full"
-        alt="Wild Landscape"
+        src="https://brand.assets.adidas.com/f_auto,q_auto,fl_lossy/capi/enUS/Images/1839569-seo-how-to-break-in-running-shoes-body-image-2_221-681798.jpg"
+        className="w-full max-h-[40rem] block"
+        alt="..."
       />
+    
+      <div className="carousel-caption hidden md:block absolute text-center">
+      <h5 className="text-xl">Adidas Limited Stock</h5>
+        <p>Adidas, in full Adidas AG, German manufacturer of athletic shoes and apparel and sporting goods. In the early 21st century it was the largest sportswear manufacturer in Europe and the second largest (after Nike) in the world.</p>
+      </div>
     </div>
-    <div className="carousel-item float-left w-full">
+    <div className="carousel-item relative float-left w-full">
       <img
-        src="https://mdbcdn.b-cdn.net/img/new/slides/042.webp"
-        className="block w-full"
-        alt="Camera"
+        src="https://kdvr.com/wp-content/uploads/sites/11/2022/11/000_best-men-s-dress-shoes-83a80d.jpg"
+        className="w-full max-h-[40rem] block"
+        alt="..."
       />
+      <div className="carousel-caption hidden md:block absolute text-center">
+        <h5 className="text-xl">Formal Shoes</h5>
+        <p>SAs formal shoes are meant for (obviously) formal occasions, they are compact and sleek in shape. Formality requires shoes to be presentable but not overbearing. Contrast this with casual shoes like Sneakers and Espadrilles, which tend to be bulkier in shape with less structure.</p>
+      </div>
     </div>
-    <div className="carousel-item float-left w-full">
+    <div className="carousel-item relative float-left w-full">
       <img
-        src="https://mdbcdn.b-cdn.net/img/new/slides/043.webp"
-        className="block w-full"
-        alt="Exotic Fruits"
+        src="https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Fhips.hearstapps.com%2Fbpc.h-cdn.co%2Fassets%2F16%2F12%2F1600x800%2Flandscape-1458943638-sport-sandals.jpg%3Fresize%3D1200%3A*"
+        className="w-full max-h-[40rem] block"
+        alt="..."
       />
+      <div className="carousel-caption hidden md:block absolute text-center">
+        <h5 className="text-xl">Sneakers</h5>
+        <p>
+Sneakers (also called trainers, athletic shoes, tennis shoes, gym shoes, kicks, sport shoes, flats, running shoes, or runners) are shoes primarily designed for sports or other forms of physical exercise, but which are now also widely used for everyday casual wear.</p>
+      </div>
+    </div>
+    <div className="carousel-item relative float-left w-full">
+      <img
+        src="https://www.apetogentleman.com/wp-content/uploads/2022/01/sneaker-types-men.jpg"
+        className="block w-full max-h-[40rem]"
+        alt="..."
+      />
+      <div className="carousel-caption hidden md:block absolute text-center">
+        <h5 className="text-xl">Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+      
     </div>
   </div>
   <button
     className="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
     type="button"
-    data-bs-target="#carouselExampleCrossfade"
+    data-bs-target="#carouselExampleCaptions"
     data-bs-slide="prev"
   >
     <span className="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
@@ -75,14 +97,13 @@ export default function Home() {
   <button
     className="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
     type="button"
-    data-bs-target="#carouselExampleCrossfade"
+    data-bs-target="#carouselExampleCaptions"
     data-bs-slide="next"
   >
     <span className="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
     <span className="visually-hidden">Next</span>
   </button>
 </div>
-
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
