@@ -1,3 +1,4 @@
+import Link from 'next/Link'
 import React from 'react'
 
 const Formal = () => {
@@ -106,8 +107,10 @@ const Formal = () => {
                       </div>
                   </div>
             </div>
+            
             <div
                   className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8 ">
+                    <Link href={'/Product/shoes'} legacyBehavior>
                     <a className="block relative rounded overflow-hidden">
                       <img
                         alt="ecommerce"
@@ -115,6 +118,7 @@ const Formal = () => {
                         className="m-auto h-[30vh] md:h-[36vh] block "
                       />
                     </a>
+                    </Link>
                     <div className="mt-4">
                       <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
                         Formal Shoes
@@ -131,6 +135,7 @@ const Formal = () => {
                       </div>
                   </div>
             </div>
+            
             <div
                   className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8 ">
                     <a className="block relative rounded overflow-hidden">
