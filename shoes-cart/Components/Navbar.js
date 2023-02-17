@@ -4,8 +4,8 @@ import ShoppingCart from '../pages/shoppingCart';
 import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
-
-const Navbar = () => {
+import {MdAccountCircle} from 'react-icons/md'
+const Navbar = ({user}) => {
   const [isOpen, setIsOpen] = useState(true);
   const handleClick=()=>{
     setIsOpen(!isOpen)
@@ -28,7 +28,9 @@ const Navbar = () => {
       <Link href='/Slipers' legacyBehavior><a className="mr-5 hover:text-gray-900">Slipers</a></Link>
     </nav>
     <div className=" inline-flex items-center border-0 py-1 px-6 focus:outline-none rounded text-base mt-4  absolute right-0 mb-4 md:mb-3 " >
-    <Link href={'/login'}><button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black">Login
+      <MdAccountCircle className='text-3xl md:text-4xl mr-2 cursor-pointer'/>
+     
+    <Link href={'/Login'}><button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black">Login
     
     </button></Link>
    
