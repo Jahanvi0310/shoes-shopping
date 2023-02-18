@@ -5,11 +5,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {MdAccountCircle} from 'react-icons/md'
-const Navbar = ({user}) => {
+const Navbar = ({user,logOut}) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
   const handleClick=()=>{
     setIsOpen(!isOpen)
   }
+  const handleMouseOver = () => {
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowDropdown(false);
+  };
   return (
     <>
       <header className=" body-font shadow-xl border-solid border-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
@@ -28,11 +36,31 @@ const Navbar = ({user}) => {
       <Link href='/Slipers' legacyBehavior><a className="mr-5 hover:text-gray-900">Slipers</a></Link>
     </nav>
     <div className=" inline-flex items-center border-0 py-1 px-6 focus:outline-none rounded text-base mt-4  absolute right-0 mb-4 md:mb-3 " >
-      <MdAccountCircle className='text-3xl md:text-4xl mr-2 cursor-pointer'/>
-     
-    <Link href={'/Login'}><button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black">Login
     
-    </button></Link>
+    {user.value ? (
+        <div
+          onMouseOver={handleMouseOver}
+          onMouseLeave={handleMouseLeave}
+        >
+          <MdAccountCircle className="text-3xl md:text-4xl mr-2 cursor-pointer" />
+          {showDropdown && (
+            <div className="absolute bg-white shadow-md  rounded-md px-5 w-36 right-8  top-7 py-7" style={{zIndex:10}}>
+             <ul className='text-black'>
+              <li className='hover:text-blue-500 cursor-pointer py-1 text-2xl'>welcome {user.email}</li>
+              <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'>My Order</li>
+              <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'onClick={logOut}> LogOut</li>
+             </ul>
+            </div>
+          )}
+        </div>
+      ) : (
+        <Link href={'/Login'}>
+          <button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black">
+            Login
+          </button>
+        </Link>
+      )}    
+    
    
     <AiOutlineShoppingCart className='text-3xl md:text-4xl cursor-pointer hover:rotate-6  text-black' onClick={handleClick} />
     </div>
