@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import Footer from '../Components/footer'
 import Navbar from '../Components/Navbar'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 function MyApp({ Component, pageProps }) {
   const [user,setUser]=useState({value:null})
   const[key,setKey]=useState(0)
@@ -16,9 +16,12 @@ function MyApp({ Component, pageProps }) {
       },[router.query])
   
       const logOut=()=>{
+        console.log("helle")
         localStorage.removeItem("token")
         setKey(Math.random)
         setUser({value:null})
+        console.log("helle")
+        Router.push('/Login')
       }
   return(
   <>

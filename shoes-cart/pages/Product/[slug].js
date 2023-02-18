@@ -1,18 +1,29 @@
 import React from 'react'
 import {useRouter} from 'next/router'
 import Link from 'next/Link'
-const Post = () => {
+import mongoose from "mongoose";
+import Product from "../../models/product";
+import { useState } from 'react';
+const Post = ({product}) => {
+  
     const router=useRouter()
     const {slug}=router.query
+    const [color, setColor] = useState(product.color);
+  const [size, setSize] = useState(product.size);
+  const refreshVariant = (newsize, newcolor) => {
+    let url = `http://localhost:3000/Product/${variants[newcolor][newsize]["slug"]}`;
+    window.location = url;
+    // }
+  };
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
   <div className="container px-5 py-24 mx-auto">
     <div className="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_2000,h_2000/global/306461/01/sv01/fnd/IND/fmt/png/SF--Drift-Cat-5-Ultra-II--Kid's-Shoes"/>
+      <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={product.img}/>
       <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">Puma {slug}</h1>
+        <h1 className="text-gray-900 text-3xl title-font font-medium mb-1"> {product.title}({product.size}/{product.color})</h1>
         <div className="flex mb-4">
           <span className="flex items-center">
             <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 text-blue-500" viewBox="0 0 24 24">
@@ -50,7 +61,7 @@ const Post = () => {
             </a>
           </span>
         </div>
-        <p className="leading-relaxed">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
+        <p className="leading-relaxed">{product.desc}</p>
         <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
           <div className="flex">
             <span className="mr-3">Color</span>
@@ -93,6 +104,29 @@ const Post = () => {
 </section>
     </div>
   )
+}
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState)
+    await mongoose.connect(process.env.MONGO_URI);
+  let product = await Product.findOne({ slug: context.query.slug });
+  let variants = await Product.find({ title: product.title,category:product.category });
+ 
+  let colorsizeSlug = {}; //{red:{XL:{slug:wear-the-code-XL}}}
+  for (let item of variants) {
+    if (Object.keys(colorsizeSlug).includes(item.color)) {
+      colorsizeSlug[item.color][item.size] = { slug: item.slug };
+    } else {
+      colorsizeSlug[item.color] = {};
+      colorsizeSlug[item.color][item.size] = { slug: item.slug };
+    }
+  }
+
+  return {
+    props: {
+      product: JSON.parse(JSON.stringify(product)),
+      variants: JSON.parse(JSON.stringify(colorsizeSlug)),
+    }, // will be passed to the page component as props
+  };
 }
 
 export default Post
