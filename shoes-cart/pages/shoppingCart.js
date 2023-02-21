@@ -43,8 +43,7 @@ console.log(cart,addToCart,removeFromCart,clearCart,subTotal)
               <div className="mt-8">
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                    {Object.keys(cart).length === 0 && 
-                      <h1 className='text-2xl font-bold'>Sorry Your Cart is empty</h1>}
+                  {Object.keys(cart).length===0 && <div className='mt-5 my-5 text-red-600'><p>😢 😢Sorry your cart is empty!</p></div>}
                   {Object.keys(cart).map((k)=>{
                     return(
                       <li className="flex py-6" key={k}>
@@ -99,7 +98,7 @@ console.log(cart,addToCart,removeFromCart,clearCart,subTotal)
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                
-                  <button type="button" className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                  <button type="button" className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" onClick={clearCart}>
                     Clear Cart
                    
                   </button>
