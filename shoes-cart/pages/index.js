@@ -1,7 +1,20 @@
 import Head from 'next/head'
-import 'tw-elements'
+import { useState,useEffect } from 'react';
 export default function Home() {
+  const [TwElements, setTwElements] = useState(null);
+
+  useEffect(() => {
+    import('tw-elements').then((module) => {
+      setTwElements(module.default);
+    });
+  }, []);
+
+  if (!TwElements) {
+    return <div>Loading...</div>;
+  }
+  
   return (
+
     <>
     
     <div>
@@ -32,7 +45,8 @@ export default function Home() {
       data-bs-target="#carouselExampleCaptions"
       data-bs-slide-to="2"
       aria-label="Slide 3"
-    ></button>
+     ></button>
+   
   </div>
   <div className="carousel-inner relative w-full overflow-hidden">
     <div className="carousel-item active relative float-left w-full">

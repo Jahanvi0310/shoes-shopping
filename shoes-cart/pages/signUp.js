@@ -26,6 +26,19 @@ else if(e.target.name =='password'){
   }
 const handleSubmit=async(e)=>{
     e.preventDefault();
+    if(name==''&&email==''&&password==''){
+      toast.error('Please Fill the details', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+          });
+    }
+    else{
   console.log('helle');
     const data = {name,email,password};
 
@@ -79,6 +92,7 @@ const handleSubmit=async(e)=>{
         theme: "colored",
           });
     }}
+  }
     
     // useEffect(()=>{
     //   if(localStorage.getItem('token')){

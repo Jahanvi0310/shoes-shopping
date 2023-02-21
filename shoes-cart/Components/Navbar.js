@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
 import {MdAccountCircle} from 'react-icons/md'
-const Navbar = ({user,logOut}) => {
+const Navbar = ({user,logOut,addToCart,cart,removeFromCart,clearCart,subTotal}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const handleClick=()=>{
@@ -67,7 +67,7 @@ const Navbar = ({user,logOut}) => {
   </div>
   
     
-  <ShoppingCart isOpen={isOpen} setIsOpen={setIsOpen}/>
+  <ShoppingCart isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} removeFromCart={removeFromCart} addToCart={addToCart} clearCart={clearCart} subTotal={subTotal}/>
   
 </header>
     </>
