@@ -23,7 +23,19 @@ else if(e.target.name =='password'){
   const handleSubmit=async(e)=>{
     console.log("helleee")
     e.preventDefault()
-  
+  if(email==''&&password==''){
+    toast.error("Please fill the details", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+  }
+  else{
     const data = {email,password};
 
   let res= await fetch('http://localhost:3000/api/login', {
@@ -69,6 +81,7 @@ else if(e.target.name =='password'){
       
     }
     }
+  }
   //  useEffect(()=>{
   //   if(localStorage.getItem('token')){
   //     Router.push('/')
