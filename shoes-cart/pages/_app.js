@@ -4,7 +4,8 @@ import Footer from '../Components/Footer'
 import { useState,useEffect } from 'react'
 import { useRouter } from 'next/router'
 import LoadingBar from 'react-top-loading-bar'
-
+import { Provider } from 'react-redux'
+import store from '../store'
 function MyApp({ Component, pageProps }) {
   const[cart,setCart]=useState({})
   const[subTotal,setSubtotal]=useState(0)
@@ -47,62 +48,64 @@ if(token){
     }
     setSubtotal(subT) 
   }
-  const addToCart=(itemCode,qty,price,name,size,variant)=>{
-let newCart=cart;
+//   const addToCart=(itemCode,qty,price,name,size,variant)=>{
+// let newCart=cart;
 
-if(itemCode in cart){
-newCart[itemCode].qty=cart[itemCode].qty+qty
-}
-else{
-  newCart[itemCode]={qty:1,price,size,name,variant}
-}
-setCart(newCart)
-saveCart(newCart)
-}
-const clearCart=()=>{
-setCart({})
-saveCart({})
+// if(itemCode in cart){
+// newCart[itemCode].qty=cart[itemCode].qty+qty
+// }
+// else{
+//   newCart[itemCode]={qty:1,price,size,name,variant}
+// }
+// setCart(newCart)
+// saveCart(newCart)
+// }
+// const clearCart=()=>{
+// setCart({})
+// saveCart({})
 
-}
-const removeFromCart=(itemCode,qty,price,name,size,variant)=>{
-  let newCart=cart;
+// }
+// const removeFromCart=(itemCode,qty,price,name,size,variant)=>{
+//   let newCart=cart;
   
-  if(itemCode in cart){
-    newCart[itemCode].qty=cart[itemCode].qty-qty
-  }
-  if(newCart[itemCode]["qty"]<=0){
-delete newCart[itemCode]
-  }
-  setCart(newCart)
-  saveCart(newCart)
-}
-const buyNow=(itemCode,qty,price,name,size,variant)=>{
-  let newCart=cart;
+//   if(itemCode in cart){
+//     newCart[itemCode].qty=cart[itemCode].qty-qty
+//   }
+//   if(newCart[itemCode]["qty"]<=0){
+// delete newCart[itemCode]
+//   }
+//   setCart(newCart)
+//   saveCart(newCart)
+// }
+// const buyNow=(itemCode,qty,price,name,size,variant)=>{
+//   let newCart=cart;
 
-if(itemCode in cart){
-newCart[itemCode].qty=cart[itemCode].qty+qty
-}
-else{
-  newCart[itemCode]={qty:1,price,size,name,variant}
-}
-setCart(newCart)
-saveCart(newCart)
-router.push('/Checkout')
-}
+// if(itemCode in cart){
+// newCart[itemCode].qty=cart[itemCode].qty+qty
+// }
+// else{
+//   newCart[itemCode]={qty:1,price,size,name,variant}
+// }
+// setCart(newCart)
+// saveCart(newCart)
+// router.push('/Checkout')
+// }
 const logOut=()=>{
   localStorage.removeItem("token")
   setKey(Math.random)
   setUser({value:null})
 }
   return <> 
+  <Provider store={store}>
   <LoadingBar
         color='#f11946'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
-  < Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} key={key} user={user} logOut={logOut}/>
-  <Component cart={cart} addToCart={addToCart} removeFromCart={removeFromCart}  clearCart={clearCart} subTotal={subTotal} {...pageProps} buyNow={buyNow}/>
+  < Navbar cart={cart}  subTotal={subTotal} key={key} user={user} logOut={logOut} />
+  <Component cart={cart} subTotal={subTotal} {...pageProps} />
   <Footer/>
+  </Provider>
   </>
 }
 
