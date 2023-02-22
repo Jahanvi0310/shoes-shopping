@@ -6,9 +6,11 @@ import Product from "../../models/product";
 import { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const Post = ({ addToCart, product, variants, buyNow}) => {
-  
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Slices/cartSlice';
+const Post = ({  product, variants, buyNow}) => {
+  // console.log('11',product)
+  const dispatch=useDispatch();
     const router=useRouter()
     const [pin, setPin] = useState();
   const [service, setservice] = useState();
@@ -56,7 +58,7 @@ const Post = ({ addToCart, product, variants, buyNow}) => {
       console.log("helle")
       dispatch(addToCart( slug,1, product.price, product.title,product.size,product.color));
       console.log( slug,1, product.price, product.title,product.size,product.color)
-    };
+    }
   
   return (
     <div>
@@ -229,17 +231,8 @@ const Post = ({ addToCart, product, variants, buyNow}) => {
                     );
                   }}>Buy Now</button></Link>
          
-          <button className="flex ml-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-cyan-600 rounded" onClick={() => {
-                    addToCart(
-                      slug,
-                      1,
-                      product.price,
-                      
-                      product.title,
-                      product.size,
-                      product.color
-                    );
-                  }}>Add To Cart</button>
+          <button className="flex ml-4 text-white bg-gradient-to-r from-cyan-500 to-blue-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-cyan-600 rounded" onClick={() => dispatch(addToCart(product))}
+                  >Add To Cart</button>
                   <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg
                     fill="currentColor"
@@ -290,6 +283,7 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState)
     await mongoose.connect(process.env.MONGO_URI);
   let product = await Product.findOne({ slug: context.query.slug });
+  console.log('12',product)
   let variants = await Product.find({ title: product.title,category:product.category });
  
   let colorsizeSlug = {}; //{red:{XL:{slug:wear-the-code-XL}}}

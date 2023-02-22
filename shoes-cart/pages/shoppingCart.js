@@ -1,14 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 import product from '../models/product'
+import { useSelector } from 'react-redux'
 
 
-const ShoppingCart = ({isOpen,setIsOpen,cart,addToCart,removeFromCart,clearCart,subTotal,product}) => {
+const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTotal,product}) => {
   
-console.log(cart,addToCart,removeFromCart,clearCart,subTotal)
+
   
-  
-  
+  const cart=useSelector((state)=>state.cart)
+  console.log(cart)
   return (
     <div>
       <nav>
@@ -43,30 +44,36 @@ console.log(cart,addToCart,removeFromCart,clearCart,subTotal)
               <div className="mt-8">
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                  {Object.keys(cart).length===0 && <div className='mt-5 my-5 text-red-600'><p>😢 😢Sorry your cart is empty!</p></div>}
-                  {Object.keys(cart).map((k)=>{
+                  {cart.cartItems.length===0 && <div className='mt-5 my-5 text-red-600'><p>😢 😢Sorry your cart is empty!</p></div>}
+                  {cart.cartItems?.map(cartItem=>{
+                    console.log(cartItem)
+                  
                     return(
-                      <li className="flex py-6" key={k}>
+                      <li className="flex py-6" >
                       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                          <img src={cart[k].img} alt="eccomerce" className="h-full w-full object-cover object-center"/>
+                          <img src={cartItem.img} alt={cartItem.slug} className="h-full w-full object-cover object-center"/>
+                          
                         </div>
   
                         <div className="ml-4 flex flex-1 flex-col">
                           <div>
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>
-                                <a href="#">{cart[k].name}</a>
+                                <a href="#">{cartItem.slug}</a>
                               </h3>
-                              <p className="ml-4">Price:{cart[k].price}</p>
+                              <p className="ml-4">Price:{cartItem.price}</p>
                              
                             </div>
                             
                           </div>
                           <div className="flex flex-1 items-end justify-between text-sm">
-                            <p className="text-gray-500">Qty:({cart[k].qty})</p>
+                            
+                          <p className="text-gray-500 ">color:{cartItem.color}</p>
+                          <p className="text-gray-500 ">size:{cartItem.size}</p>
+                            <p className="text-gray-500">Qty:{cartItem.cartQuantity}</p>
                            
                             <div className="flex">
-                              <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500" onClick={()=>{removeFromCart(k,1,cart[k].price,cart[k].name,cart[k].size,cart[k].variant)}}>Remove</button>
+                              <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500 " >Remove</button>
                             </div>
                           </div>
                         </div>
@@ -89,7 +96,10 @@ console.log(cart,addToCart,removeFromCart,clearCart,subTotal)
             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
               <div className="flex justify-between text-base font-medium text-gray-900">
                 <p>Subtotal</p>
-                <p>{subTotal}</p>
+                {cart.cartItems?.map(cartItem=>{
+                  <p>{cartItem.price * cartItem.cartQuantity}</p>
+                })}
+                
               </div>
               <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
               <div className="mt-6">
