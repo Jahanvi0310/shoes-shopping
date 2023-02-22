@@ -21,16 +21,7 @@ const router=useRouter();
       setProgress(100)
     })
 
-try{
-  if(localStorage.getItem("cart")){
-    setCart(JSON.parse(localStorage.getItem("cart")))
-    saveCart(JSON.parse(localStorage.getItem("cart")))
-  }
-}
-catch(error){
-  console.error(error)
-  localStorage.clear();
-}
+
 const token=localStorage.getItem("token")
 if(token){
   setUser({value:token})

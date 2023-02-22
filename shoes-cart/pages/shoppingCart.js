@@ -1,15 +1,22 @@
 import React from 'react'
 import Link from 'next/link'
-import product from '../models/product'
-import { useSelector } from 'react-redux'
+import { clearCart } from './Slices/cartSlice'
+import { useSelector,useDispatch } from 'react-redux'
 
-
-const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTotal,product}) => {
+import { removeFromCart } from './Slices/cartSlice'
+const ShoppingCart = ({isOpen,setIsOpen,addToCart,subTotal,product}) => {
   
-
+const dispatch=useDispatch()
   
   const cart=useSelector((state)=>state.cart)
+  
   console.log(cart)
+  const calculateSubTotal = (cartItems) => {
+    return cartItems.reduce((total, cartItem) => {
+      return total + (cartItem.price * cartItem.cartQuantity);
+    }, 0);
+  }
+  
   return (
     <div>
       <nav>
@@ -61,7 +68,7 @@ const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTo
                               <h3>
                                 <a href="#">{cartItem.slug}</a>
                               </h3>
-                              <p className="ml-4">Price:{cartItem.price}</p>
+                              <p className="ml-4">₹{cartItem.price}</p>
                              
                             </div>
                             
@@ -73,7 +80,7 @@ const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTo
                             <p className="text-gray-500">Qty:{cartItem.cartQuantity}</p>
                            
                             <div className="flex">
-                              <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500 " >Remove</button>
+                              <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500 " onClick={()=>dispatch(removeFromCart(cartItem))}>Remove</button>
                             </div>
                           </div>
                         </div>
@@ -94,13 +101,10 @@ const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTo
             </div>
 
             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-              <div className="flex justify-between text-base font-medium text-gray-900">
-                <p>Subtotal</p>
-                {cart.cartItems?.map(cartItem=>{
-                  <p>{cartItem.price * cartItem.cartQuantity}</p>
-                })}
-                
-              </div>
+            <div className="flex justify-between text-base font-medium text-gray-900">
+  <p>Subtotal</p>
+  <p>₹{calculateSubTotal(cart.cartItems)}</p>
+</div>
               <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
               <div className="mt-6">
                 <Link href={'/Checkout'} legacyBehavior>
@@ -108,7 +112,7 @@ const ShoppingCart = ({isOpen,setIsOpen,addToCart,removeFromCart,clearCart,subTo
               </div>
               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                
-                  <button type="button" className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" onClick={clearCart}>
+                  <button type="button" className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" onClick={() => dispatch(clearCart())}>
                     Clear Cart
                    
                   </button>
