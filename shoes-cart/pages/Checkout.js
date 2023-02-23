@@ -61,6 +61,7 @@ const Checkout=()=>{
               <div className="ml-3">
                 <p className="text-base font-semibold text-white">{cartItem.slug}</p>
                 <p className="text-sm font-medium text-white text-opacity-80">size:{cartItem.size}</p>
+                <p className="text-sm font-medium text-white text-opacity-80">Qty:{cartItem.cartQuantity}</p>
               </div>
             </div>
             <p className="text-sm font-semibold text-white">₹{cartItem.price}</p>

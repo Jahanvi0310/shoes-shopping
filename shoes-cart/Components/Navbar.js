@@ -19,6 +19,7 @@ const Navbar = ({user,logOut,cartItemsCount}) => {
   const handleMouseLeave = () => {
     setShowDropdown(false);
   };
+ 
   return (
     <>
    
@@ -33,10 +34,10 @@ const Navbar = ({user,logOut,cartItemsCount}) => {
       <span className="ml-2 text-xl ">ShoeMart.com</span></Link>
     
     <nav className="md:ml-auto md:mr-auto flex flex-wrap items-center justify-center font-bold  text-xl">
-  <Link href='/Formal' legacyBehavior><a className="mr-5 hover:text-gray-900">Formal</a></Link>
-      <Link href='/Sneaker' legacyBehavior><a className="mr-5 hover:text-gray-900">Sneaker</a></Link>
-      <Link href='/Sport' legacyBehavior><a className="mr-5 hover:text-gray-900">Sport</a></Link>
-      <Link href='/Slipers' legacyBehavior><a className="mr-5 hover:text-gray-900">Slipers</a></Link>
+  <Link href='/Formal' legacyBehavior><a className="mr-5 hover:text-gray-900 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">Formal</a></Link>
+      <Link href='/Sneaker' legacyBehavior><a className="mr-5 hover:text-gray-900 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">Sneaker</a></Link>
+      <Link href='/Sport' legacyBehavior><a className="mr-5 hover:text-gray-900 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">Sport</a></Link>
+      <Link href='/Slipers' legacyBehavior><a className="mr-5 hover:text-gray-900 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110">Slipers</a></Link>
     </nav>
     <div className=" inline-flex items-center border-0 py-1 px-6 focus:outline-none rounded text-base mt-4  absolute right-0 mb-4 md:mb-3 " >
     
@@ -45,11 +46,11 @@ const Navbar = ({user,logOut,cartItemsCount}) => {
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
         >
-          <MdAccountCircle className="text-3xl md:text-4xl mr-2 cursor-pointer" />
+          <MdAccountCircle className="text-3xl md:text-4xl mr-2 cursor-pointer transition duration-500 ease-in-out transform hover:rotate-3" />
           {showDropdown && (
             <div className="absolute bg-white shadow-md  rounded-md px-5 w-36 right-8  top-7 py-7" style={{zIndex:10}}>
              <ul className='text-black'>
-              <li className='hover:text-blue-500 cursor-pointer py-1 text-2xl'>welcome {user.email}</li>
+              <li className='hover:text-blue-500 cursor-pointer py-1 text-2xl'>welcome {user.name}</li>
               <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'>My Order</li>
               <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'onClick={logOut}> LogOut</li>
              </ul>

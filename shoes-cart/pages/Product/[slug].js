@@ -8,8 +8,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Slices/cartSlice';
+
 const Post = ({  product, variants, buyNow}) => {
   // console.log('11',product)
+ 
   const dispatch=useDispatch();
     const router=useRouter()
     const [pin, setPin] = useState();
@@ -77,7 +79,24 @@ const Post = ({  product, variants, buyNow}) => {
         />
   <div className="container px-5 py-24 mx-auto">
     <div className="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src={product.img}/>
+    <img
+  alt="ecommerce"
+  className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded animate-zoom-in"
+  src={product.img}
+/>
+      <style jsx>{`
+  @keyframes zoom-in {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+  .animate-zoom-in {
+    animation: zoom-in 0.5s ease-out both;
+  }
+`}</style>
       <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
         <h1 className="text-gray-900 text-3xl title-font font-medium mb-1"> {product.title}({product.size}/{product.color})</h1>
