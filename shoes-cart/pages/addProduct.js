@@ -91,7 +91,7 @@ draggable
 pauseOnHover
 theme="colored"
 />
-<div className="max-w-md mx-auto ">
+<div className=" max-w-md mx-auto ">
 
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Add Product</h1>
       <form onSubmit={handleSubmit} >
