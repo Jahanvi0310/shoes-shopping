@@ -3,7 +3,9 @@ import Image from 'next/image'
 const Footer = () => {
   return (
     <div>
+      
      <footer className="text-center lg:text-left bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+      
   <div className="flex justify-center items-center lg:justify-between p-6 border-b border-gray-300">
     <div className="mr-12 hidden lg:block">
       <span>Get connected with us on social networks:</span>

@@ -4,8 +4,9 @@ import ShoppingCart from '../pages/shoppingCart';
 import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineShoppingCart} from 'react-icons/ai'
-import {MdAccountCircle} from 'react-icons/md'
-const Navbar = ({user,logOut,addToCart,cart,removeFromCart,clearCart,subTotal}) => {
+import {MdAccountCircle, MdAddToPhotos} from 'react-icons/md'
+
+const Navbar = ({user,logOut,cartItemsCount}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [showDropdown, setShowDropdown] = useState(false);
   const handleClick=()=>{
@@ -20,6 +21,8 @@ const Navbar = ({user,logOut,addToCart,cart,removeFromCart,clearCart,subTotal}) 
   };
   return (
     <>
+   
+  
       <header className=" body-font shadow-xl border-solid border-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
   <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center md:justify-start 'sticky top-0 z-10'">
 
@@ -55,19 +58,20 @@ const Navbar = ({user,logOut,addToCart,cart,removeFromCart,clearCart,subTotal}) 
         </div>
       ) : (
         <Link href={'/Login'}>
-          <button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black">
+          <button className="mx-2 rounded-md py-1 px-2 cursor:pointer space-x-4 bg-white text-black" >
             Login
           </button>
         </Link>
       )}    
-    
-   
+      <Link href={'/addProduct'}>
+   <MdAddToPhotos className='text-3xl md:text-4xl cursor-pointer hover:rotate-6  text-black'/>
+   </Link>
     <AiOutlineShoppingCart className='text-3xl md:text-4xl cursor-pointer hover:rotate-6  text-black' onClick={handleClick} />
     </div>
   </div>
   
     
-  <ShoppingCart isOpen={isOpen} setIsOpen={setIsOpen} cart={cart} removeFromCart={removeFromCart} addToCart={addToCart} clearCart={clearCart} subTotal={subTotal}/>
+  <ShoppingCart isOpen={isOpen} setIsOpen={setIsOpen} />
   
 </header>
     </>

@@ -255,7 +255,7 @@ const Post = ({  product, variants, buyNow}) => {
                   value={pin}
                 />
                 <button
-                  className=" text-white bg-cyan-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded "
+                  className=" text-white bg-gradient-to-r from-cyan-500 to-blue-500 border-0 py-2 px-6 focus:outline-none rounded "
                   onClick={checkServiceabilty}
                 >
                   Check
