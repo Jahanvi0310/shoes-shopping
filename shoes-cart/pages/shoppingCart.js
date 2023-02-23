@@ -4,7 +4,7 @@ import { clearCart } from './Slices/cartSlice'
 import { useSelector,useDispatch } from 'react-redux'
 
 import { removeFromCart } from './Slices/cartSlice'
-const ShoppingCart = ({isOpen,setIsOpen,addToCart,subTotal,product}) => {
+const ShoppingCart = ({isOpen,setIsOpen,user}) => {
   
 const dispatch=useDispatch()
   
@@ -51,7 +51,7 @@ const dispatch=useDispatch()
               <div className="mt-8">
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                  {cart.cartItems.length===0 && <div className='mt-5 my-5 text-red-600'><p>😢 😢Sorry your cart is empty!</p></div>}
+                  {cart.cartItems.length===0 && <div className='mt-5 my-5 text-red-600 flex justify-center items-center text-xl'><p>No Items in Your cart</p></div>}
                   {cart.cartItems?.map(cartItem=>{
                     console.log(cartItem)
                   
