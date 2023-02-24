@@ -50,7 +50,7 @@ const Navbar = ({user,logOut,cartItemsCount}) => {
           {showDropdown && (
             <div className="absolute bg-white shadow-md  rounded-md px-5 w-36 right-8  top-7 py-7" style={{zIndex:10}}>
              <ul className='text-black'>
-              <li className='hover:text-blue-500 cursor-pointer py-1 text-2xl'>welcome {user.name}</li>
+              <li className='hover:text-blue-500 cursor-pointer py-1 text-2xl'>welcome</li>
               <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'>My Order</li>
               <li className='hover:text-blue-500 cursor-pointer py-1 text-sm'onClick={logOut}> LogOut</li>
              </ul>

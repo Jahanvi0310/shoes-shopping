@@ -3,6 +3,7 @@ import React from 'react'
 import Product from "../models/product";
 import mongoose from "mongoose";
 import { useTrail, animated } from 'react-spring';
+import { motion } from 'framer-motion';
 const Sneaker = ({products}) => {
   console.log(products);
   const trail = useTrail(Object.keys(products).length, {
@@ -15,19 +16,27 @@ const Sneaker = ({products}) => {
     
     <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4 justify-center ">
+          <div className="flex flex-wrap -m-4 justify-center">
           {trail.map((props,index)=>{
               const item = Object.values(products)[index];
               return(
 <animated.div
-                  className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8  "key={item._id} style={props}>
+                  className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8 "key={item._id} style={props}>
                     <Link passHref={true} href={`/Product/${item.slug}`}>
                     <a className="block relative rounded overflow-hidden">
-                      <img
+                    <motion.div
+                    className="h-64 overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                      <motion.img
                         alt="ecommerce"
-                       src={item.img}                      className="m-auto h-[30vh] md:h-[36vh] block "
+                       src={item.img}  
+                       initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}                    className="m-auto h-[30vh] md:h-[36vh] block "
                         
                       />
+                      </motion.div>
                     </a>
                     <div className="mt-4">
                       <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
