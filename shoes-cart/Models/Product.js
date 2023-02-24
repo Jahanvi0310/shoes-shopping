@@ -12,5 +12,10 @@ const productSchema = new mongoose.Schema({
   availableQty: { type: Number, default: 0 },
   
 },{timestamps:true});
+
+
+
+
+
 mongoose.models={}
 export default mongoose.model("products",productSchema);

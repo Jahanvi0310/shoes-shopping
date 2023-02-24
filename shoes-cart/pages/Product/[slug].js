@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Slices/cartSlice';
-
+import MoreShoes from '../MoreShoes'
 const Post = ({  product, variants, buyNow}) => {
   // console.log('11',product)
  
@@ -61,7 +61,8 @@ const Post = ({  product, variants, buyNow}) => {
       dispatch(addToCart( slug,1, product.price, product.title,product.size,product.color));
       console.log( slug,1, product.price, product.title,product.size,product.color)
     }
-  
+    
+      
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -292,7 +293,9 @@ const Post = ({  product, variants, buyNow}) => {
               )}
         
       </div>
+      <MoreShoes/>
     </div>
+   
   </div>
 </section>
     </div>

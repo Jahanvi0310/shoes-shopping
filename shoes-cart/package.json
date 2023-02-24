@@ -16,6 +16,7 @@
     "crypto-js": "^4.1.1",
     "flowbite": "^1.6.3",
     "flowbite-react": "^0.3.8",
+    "framer-motion": "^9.1.6",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.2",
     "next": "13.1.6",

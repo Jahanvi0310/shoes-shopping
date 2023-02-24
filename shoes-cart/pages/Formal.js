@@ -1,17 +1,20 @@
 import Link from 'next/Link'
-import React from 'react'
+import React,{useState} from 'react'
 import Product from "../models/product";
 import mongoose from "mongoose";
-import { useTrail, animated } from 'react-spring';
-
+import { useTrail, useSpring, animated } from 'react-spring';
+import { motion } from 'framer-motion';
 const Formal = ({products}) => {
+  const [hoverIndex, setHoverIndex] = useState(-1);
   console.log(products);
   const trail = useTrail(Object.keys(products).length, {
     from: { opacity: 0, x: 50 },
     to: { opacity: 1, x: 0 },
     config: { mass: 1, tension: 100, friction: 20 },
   });
-  
+  const hoverStyle = useSpring({
+    transform: hoverIndex >= 0 ? 'scale(1.05)' : 'scale(1)',
+  });
   return (
     <>
       <section className="text-gray-600 body-font">
@@ -19,15 +22,28 @@ const Formal = ({products}) => {
           <div className="flex flex-wrap -m-4 justify-center ">
             {trail.map((props,index)=>{
               const item = Object.values(products)[index];
+              
               return(
-                <animated.div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8" key={item._id} style={props}>
+                <animated.div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-xl m-8" key={item._id} style={{ ...props, ...hoverStyle }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}>
                   <Link passHref={true} href={`/Product/${item.slug}`} legacyBehavior>
+
                     <a className="block relative rounded overflow-hidden">
-                      <img
+                    <motion.div
+                    className="h-64 overflow-hidden"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                      <motion.img
                         alt="ecommerce"
                         src={item.img}
                         className="m-auto h-[30vh] md:h-[36vh] block"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
                       />
+                      </motion.div>
                     </a>
                   </Link>
                   <div className="mt-4">
